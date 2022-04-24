@@ -1,0 +1,112 @@
+GREP COMMAND:
+
+used for searching for patterns in files,in single or multiple files
+pattern is specified as a string
+to give the string in optimised way-it uses regular expressions
+grep/egrep is used(for extended regular expressions)
+
+grep prints each line that matches with the pattern
+
+
+/// grep "sales" emp.txt
+///o/p  displays complete line having "sales"
+
+
+who | grep "ai"
+
+who | grep "student"................returns nothing when the pattern is not matched
+
+GREP COMMAND ON MULTIPLE FILES
+///grep "sales" emp.txt dept.txt
+
+OPTIONS: -i , -v -n -c -l -e exp -x -f 5 -E -F
+
+
+///gerp -i "agarwal" emp.txt...................ignores case sensitivity
+
+/// grep -v "sales" emp.txt............displays lines except sales
+
+///-n.......gives the numbers to the lines
+
+///grep -c "sales"emp.txt.............shows the count of occurences
+
+///grep -c "for" pm*.sh.......we can also use wildcards
+
+///grep -e "agarwal" -e "pattern2" emp.txt  ...................  multiple patterns can  be specified
+
+REGULAR EXPRESSIONS WITH GREP COMMAND
+*   
+g*
+.
+.*
+[jgd]
+[r1-r2]
+[1-4]
+[^1-3]                                  negate
+^pat.............lines starting with pat appears as output
+pat$ ................search for patterns at the end
+^ $.......search for emply linbe
+
+..................
+[jdg] - u can match with any of these characters
+///grep "Ag[ar][ra]wal emp.txt
+///grep "Ag[^ar][ra]wal emp.txt
+
+* - taken with prev symbol-0 or more ocuurences of prev symbol
+
+g*- indicates either nothing, or g more number of times
+///grep "ag*arwal" emp.txt
+
+
+.-
+///grep "j.*saxena" emp.txt
+
+^-negate
+///grep "^[^2]" emp.txt...........all emplaoys who doesnt start with 2
+
+
+
+ls -l | grep "^d".............to display only directory
+/// grep "g\*" emp.txt..............for removing the special meaning
+
+EXTENDED REGULAR EXPRESSIONS:
+ERE- wont work with grep until u use an extention like -E
++    - g+  -matches one or moe occurence of prev character
+///grep -E "Ag+arwal" emp.txt
+
+
+?    - match 0 or 1 occurence of prev char
+///grep -E "Ag?rawal" emp.txt
+
+|    - used for searching for multiple pattrens..act as a separator
+/// grep -E "Agarwal|Agrawal" emp.txt
+
+()   - takes as "or"
+///grep -E "Ar(ar|ra)wal" emp.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

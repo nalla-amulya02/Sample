@@ -1,0 +1,132 @@
+pr command- see the man page make the file suitable for proprer printing by adding some headers and footers
+pr data.txt
+prints the last access time of this file, no.of pages and contents cursor some lines away from th file ...some blank lines...adds 5 lines of margin at top and bottom
+
+display output in some particular no. of col: 
+p1.sh.....123456 downwards
+bash p1.sh
+
+bash p1.sh | pr -t-5                 //displays in 5 columns.formating the output of the files
+
+display the line number; pr -n data.txt
+
+-d,-o
+we can print only certain no. of lines also :
+pr +5 data.txt..............statrs from 5th page
+
+pr -l 5 data,txt..............display 5 lines(restricting no. of lines rpoperly)
+
+used in piping combination with lp command
+
+
+
+lp:to print the file 
+
+
+head comman- see the manpage:print the first 10 lines of the file to stdout
+head data.txt
+
+mention linecount: head -n 5 data.txt(first 5 lines)
+
+uses:used with la command shows the prev accesss file name
+ls -t         (display files wrt accessing time)
+
+vi `ls -t |head -n 1`        (show the first line of the list)
+
+
+tail command*:display the last 10 lines to stdout
+tail data.txt
+tail -n 5 data.txt.....displays the last 5 lines of data,txt
+
+tail +5 data.txt......displays from line no.5 till end
+log file:maintains the errors when running a software
+to monitor the growth of log file, use tail -f
+
+
+to extract certain no. of line : tail -c -10 data.txt...displays the last 10 bytes
+
+
+
+cut command:cut / slice file vertically
+default file:stdin file denited by -
+
+tee command:whatever the inout given is taken to afile and displayed
+
+
+head -n 5 data.txt |tee fist5.txt
+apply the cut command:  wrt column number: cut -c 1 -15 first5.txt
+1st letter to 14th colum is displayed
+for displaying multiple fields: cut -c 1 -14,69-75 first5.txt
+
+apply the cut command:  wrt fields:   delimiter is':'
+fields are separated by colons
+file should be alligned -c
+
+cut -d : -f 1,4 first5.txt | tee firstfourth.txt..........(display 1st and fourth column and take it into another file..it also takes the delimiter)
+applications:
+who | cut -d " " -f 1..........(displays only the user name in combination with who command)
+
+
+
+
+😁️paste command: see the man page
+cannot paste in horizontal manner
+
+default delimiter: is tab
+
+1st and 4th colums in 1 file and 2nd column into another file and then paste them into singe file
+cut -d : -f 2 first5.txt |tee second.txt
+
+paste firstfourth.txt second.txt ......delimiter is tab
+paste -d "|" firstfourth.txt second.txt ........mentioning the delimiter
+
+-s opt: makes the content alligned 
+paste -s data1...........combines every line into single line
+paste -s -d ":::::\n" data1
+
+sort command: sort the lines of the text files default  is 
+sort data.txt.takes first col and sort it
+-t -k number, -k num1,num2     -k num1.num2    -c -o filename
+sorting based on fielsd
+sort -t : -k 3 data.txt
+sort -t : -r -k data.txt............sorted in reverse order
+sort -t : -k 1,1 -k 3,3 data.txt
+
+sorting based on columns
+sort -t : -k 4.7,4.8 -k 3,3 data.txt..........4th field 7th and 8th columns
+
+
+sort ndata
+sort -n ndata.........sorts numerically
+
+sort -u..........displays unrepeated lines of the file
+
+
+😁️uniq commad: same as sort -u
+
+uniq firstfile.txt........removes the repetitions
+used with sort command
+output of sort command as the input of uniq command to remove the dedundant data
+uniq file1 file2......inputs is file1 and gives the output to file 2
+
+to select the nonrepeated line of the file, cut sort uniq
+
+cut -d ":" -f 1 first5.txt | sort | uniq -u........shows the nonrepeated lines
+
+we can count the freq of occurence 
+cut -d ":" -f 1 first5.txt | sort | uniq -c
+
+
+
+😁️tr command: apply the filtering onto the etxt file.....all the individual char are translated or deleted
+tr input should be stdin but not from a file
+
+change : with some other symbol
+tr ':/' '~.' < data.txt
+tr '[a-z]' '[A-Z]' < data.txt
+
+ 
+
+
+
+
